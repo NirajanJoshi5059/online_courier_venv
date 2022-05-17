@@ -20,7 +20,7 @@ class Product(models.Model):
     weight=models.ForeignKey(Weight, on_delete=models.CASCADE)
     name=models.CharField(max_length=255)
     price=models.CharField(max_length=255)
-    quantity=models.IntegerField(max_length=255)
+    quantity=models.IntegerField()
     category=models.CharField(max_length=255)
     fullname=models.CharField(max_length=255)
     contact=models.CharField(max_length=255)
