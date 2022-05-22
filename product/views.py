@@ -14,4 +14,7 @@ def product_form(request):
     #     print(product_name)
     form=ProductForm(request.POST or None)
     context={'form':form}
+    if form.is_valid():
+        # print(form.cleaned_data)
+        form.save()
     return render(request, 'form.html',context)
