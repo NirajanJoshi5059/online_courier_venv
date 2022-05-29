@@ -16,6 +16,7 @@
             <th>Quantity</th>
             <th>Category</th>
             <th>Status</th>
+            <th>Image</th>
             <th>Delete</th>
         </tr>
         
@@ -29,6 +30,13 @@
             <td>{{product.quantity}}</td>
             <td>{{product.category}}</td>
             <td>{{product.status}}</td>
+            <td>
+                {% if product.image %}
+                    <img width="40", height="40" src="{{product.image.url}}", alt="Loading...">
+                {% else %}
+                    <span>Image not Uploaded</span>
+                {% endif %}
+            </td>
             <td><a href="{% url 'product:delete_product' product.id %}" class="btn btn-danger">Delete</a></td>
         </tr>
         {% endfor %}

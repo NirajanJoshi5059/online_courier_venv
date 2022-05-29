@@ -16,7 +16,7 @@ def product_form(request):
     # if request.POST:
     #     product_name=request.POST['product_name']
     #     print(product_name)
-    form=ProductForm(request.POST or None)
+    form=ProductForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         # print(form.cleaned_data)
         form.save()
@@ -27,7 +27,7 @@ def product_form(request):
 def edit_product(request, id):
     # product=Product.objects.get(id=id)
     product=get_object_or_404(Product, id=id)
-    form=ProductForm(request.POST or None, instance=product)
+    form=ProductForm(request.POST or None, request.FILES or None, instance=product)
     if form.is_valid():
         form.save()
         return HttpResponseRedirect(reverse('product:product_list'))

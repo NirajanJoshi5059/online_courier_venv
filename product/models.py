@@ -1,3 +1,4 @@
+from operator import mod
 from django.db import models
 # Create your models here.
 class Weight(models.Model):
@@ -28,6 +29,7 @@ class Product(models.Model):
     status=models.CharField(max_length=50, choices=STATUS_CHOICE)
     shipping_address=models.CharField(max_length=255, null=True, blank=True)
     remarks=models.TextField(null=True, blank=True )
+    image=models.ImageField(upload_to='product_image/', blank=True, null=True)
 
     def __str__(self):
         return self.name
