@@ -11,3 +11,8 @@ class ProductForm(forms.ModelForm):
         model=Product
         fields='__all__'
         exclude= ('status','remarks',)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for i in self.visible_fields():
+            i.field.widget.attrs['class']='form-control'
