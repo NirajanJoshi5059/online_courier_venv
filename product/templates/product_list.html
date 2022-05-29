@@ -1,6 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    {{ block.super }}
+    <!-- {{ block.super }} -->
     <h1>Product List</h1>
+    <table class="table table-striped">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Full Name</th>
+            <th>Address</th>
+            <th>Contact</th>
+            <th>Quantity</th>
+            <th>Category</th>
+            <th>Status</th>
+        </tr>
+        
+        {% for product in products %}
+        <tr>
+            <td>{{product.name}}</td>
+            <td>{{product.price}}</td>
+            <td>{{product.fullname}}</td>
+            <td>{{product.address}}</td>
+            <td>{{product.contact}}</td>
+            <td>{{product.quantity}}</td>
+            <td>{{product.category}}</td>
+            <td>{{product.status}}</td>
+        </tr>
+        {% endfor %}
+    </table>
 {% endblock content %}
