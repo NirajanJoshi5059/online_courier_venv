@@ -1,5 +1,5 @@
 from django.shortcuts import render, reverse, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from product.forms import ProductForm
 from product.models import Product
 
@@ -33,3 +33,13 @@ def edit_product(request, id):
         return HttpResponseRedirect(reverse('product:product_list'))
     context={'form':form}
     return render(request, 'form.html', context)
+
+def delete_product(request, id):
+    # product=get_object_or_404(Product, id=id)
+    try:
+        product=Product.objects.get(id=id)
+    except Product.DoesNotExist:
+        return HttpResponse("Product doesn't found.")
+    product.delete()
+    return HttpResponseRedirect(reverse('product:product_list'))
+    # return HttpResponseRedirect('product/delete-product/product.id')

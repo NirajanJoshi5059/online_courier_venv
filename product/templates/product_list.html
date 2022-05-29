@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+{% block navbar %}
+    {% include 'components/navbar.html' %}
+{% endblock navbar %}
 
 {% block content %}
     <!-- {{ block.super }} -->
@@ -13,11 +16,12 @@
             <th>Quantity</th>
             <th>Category</th>
             <th>Status</th>
+            <th>Delete</th>
         </tr>
         
         {% for product in products %}
         <tr>
-            <td>{{product.name}}</td>
+            <td><a href="{% url 'product:edit_product' product.id %}">{{product.name}}</a></td>
             <td>{{product.price}}</td>
             <td>{{product.fullname}}</td>
             <td>{{product.address}}</td>
@@ -25,6 +29,7 @@
             <td>{{product.quantity}}</td>
             <td>{{product.category}}</td>
             <td>{{product.status}}</td>
+            <td><a href="{% url 'product:delete_product' product.id %}" class="btn btn-danger">Delete</a></td>
         </tr>
         {% endfor %}
     </table>
