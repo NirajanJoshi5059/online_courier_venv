@@ -2,6 +2,7 @@ from django.shortcuts import render, reverse, get_object_or_404
 from django.http import HttpResponse, HttpResponseRedirect
 from product.forms import ProductForm
 from product.models import Product
+from django.views.generic import CreateView
 
 # Create your views here.
 def dashboard(request):
@@ -12,7 +13,15 @@ def product_list(request):
     context={'products':products}
     return render(request, 'product_list.html', context)
 
-def product_form(request):
+class SaveProduct(CreateView):
+    model= Product
+    form_class= ProductForm
+    template_name= 'form.html'
+
+    def get_success_url(self):
+        return reverse('product:product_list')
+
+def save_product(request):
     # if request.POST:
     #     product_name=request.POST['product_name']
     #     print(product_name)
