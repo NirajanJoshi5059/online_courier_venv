@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #custom app
     'product',
     'customer',
+    'useraccount',
     
 ]
 
@@ -127,8 +128,17 @@ STATICFILES_DIRS = [BASE_DIR/'staticfiles',]
 #media (Image, Files)
 MEDIA_URL='/media/'
 
-
+LOGIN_REDIRECT_URL='product:product_list'
+LOGOUT_REDIRECT_URL='user:login'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#EMAIL using google default email
+
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_HOST_USER='ytddah@gmail.com'
+EMAIL_HOST_PASSWORD='ytddash_123'
+EMAIL_USE_TLS=True

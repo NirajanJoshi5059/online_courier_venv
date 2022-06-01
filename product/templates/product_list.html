@@ -6,6 +6,9 @@
 {% block content %}
     <!-- {{ block.super }} -->
     <h1>Product List</h1>
+    <a href="{% url 'user:logout' %}">
+        LOGOUT
+    </a>
     <table class="table table-striped">
         <tr>
             <th>Name</th>
