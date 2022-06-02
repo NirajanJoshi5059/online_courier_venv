@@ -4,10 +4,10 @@ from product.models import Product, Weight
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display=('name','price','quantity','status','weight')
-    list_filter=('status',)
+    list_display=('name','price','quantity','status','weight','created','modified',)
+    # list_filter=('status',)
 
 @admin.register(Weight)
 class WeightAdmin(admin.ModelAdmin):
-    list_display=('weight_range','price')
+    list_display=('weight_range','price',)
 

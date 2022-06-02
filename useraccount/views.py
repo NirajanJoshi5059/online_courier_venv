@@ -33,11 +33,11 @@ def signup_view(request):
     context={'form':form}
     return render(request,'register.html', context)
 
-def send_confirm_email(request):
-    subject="Test Subject"
-    message="Dummy Email"
-    from_email="ytddash@gmail.com"
-    recipient_list=['nirajanjoc19@gmail.com','kneerajun@gmail.com']
-    html_message=render_to_string('email.html', {'name':'PYTHON'})
-    result=send_mail(subject, message, from_email, recipient_list, html_message=html_message)
-    return HttpResponse(result)
+# def send_confirm_email(request):
+#     subject="Test Subject"
+#     message="Dummy Email"
+#     from_email="ytddash@gmail.com"
+#     recipient_list=['nirajanjoc19@gmail.com','kneerajun@gmail.com']
+#     html_message=render_to_string('email.html', {'name':'PYTHON'})
+#     result=send_mail(subject, message, from_email, recipient_list, html_message=html_message)
+#     return HttpResponse(result)
