@@ -5,6 +5,7 @@ from product.models import Product, Weight
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
     list_display=('name','price','quantity','status','weight','created','modified',)
+    
     # list_filter=('status',)
 
 @admin.register(Weight)

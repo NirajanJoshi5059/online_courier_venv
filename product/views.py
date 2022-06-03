@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseRedirect
 from product.forms import ProductForm
 from product.models import Product
 from django.views.generic import CreateView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def dashboard(request):
@@ -13,14 +15,20 @@ def product_list(request):
     context={'products':products}
     return render(request, 'product_list.html', context)
 
-class SaveProduct(CreateView):
+class SaveProduct(LoginRequiredMixin, CreateView):
     model= Product
     form_class= ProductForm
     template_name= 'form.html'
+    # login_url='user:login'
 
     def get_success_url(self):
         return reverse('product:product_list')
-
+    
+    def form_valid(self, form):
+        product=form.save(commit=False)
+        product.user=self.request.user
+        return super().form_valid(product)
+@login_required()
 def save_product(request):
     # if request.POST:
     #     product_name=request.POST['product_name']
@@ -28,7 +36,9 @@ def save_product(request):
     form=ProductForm(request.POST or None, request.FILES or None)
     if form.is_valid():
         # print(form.cleaned_data)
-        form.save()
+        product=form.save(commit=False)
+        product.user=request.user
+        product.save()
         return HttpResponseRedirect(reverse('product:product_list'))
     context={'form':form}
     return render(request, 'form.html',context)
